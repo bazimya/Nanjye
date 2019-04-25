@@ -1,0 +1,201 @@
+{%extends "all-news/base.html"%}
+{% load bootstrap3 %}
+
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+    <title>Document</title>
+</head>
+<body>
+  {% block content %}
+    <div class="container">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-4">
+              <h4><img src="https://cdn.icon-icons.com/icons2/916/PNG/512/Menu_icon_icon-icons.com_71858.png" style="width:30px; height:30px"> My Markets</h4>
+              <ul class="list-group">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Morbi leo risus</li>
+                <li class="list-group-item">Porta ac consectetur ac</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Morbi leo risus</li>
+              </ul>
+            </div>
+            <div class="col-md-8">
+                <div >
+                    
+                  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:100% !important;">
+                      <!-- Indicators -->
+                     
+                      <ol class="carousel-indicators">
+                      {%if imageindex.id == 1 %}
+                        <li data-target="#myCarousel" data-slide-to="{{imageindex.id}}" class="active" ></li>
+                        {%else%}
+                        <li data-target="#myCarousel" data-slide-to="0"></li>
+                        {%endif%}
+                      </ol>
+                  
+                      <!-- Wrapper for slides -->
+                      <div class="carousel-inner" >
+                          {%for imageindex in imgWelcome%}
+                                 {%if imageindex.id == 1%}
+                            <div class="item active" >
+                                {%else%}
+                                  <div class="item" >
+                                  {%endif %}
+                                  <img src="{{imageindex.small2_banar.url}}" alt="Los Angeles" style="width:100%; height:30vh">
+                              </div>
+                                
+                                        {%endfor%}
+                              </div>
+                              <!-- Left and right controls -->
+                              <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                <span class="sr-only">Previous</span>
+                              </a>
+                              <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                <span class="sr-only">Next</span>
+                              </a>
+                    </div>
+                </div>
+               
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="container-flued">
+                       
+                            <div class="col-md-12">
+                              <h1>hello </h1>
+                            </div>
+                            <div class="col-md-12">
+                              <img src="data:image/png;base64,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" alt="..." class="img-rounded" width="200px">
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="container-flued">
+                       
+                            <div class="col-md-12">
+                              <h1>hello </h1>
+                            </div>
+                            <div class="col-md-12">
+                              <img src="data:image/png;base64,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" alt="..." class="img-rounded" width="200px">
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="container-flued">
+                       
+                          <div class="col-md-12">
+                            <h1>hello </h1>
+                          </div>
+                          <div class="col-md-12">
+                            <img src="data:image/png;base64,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" alt="..." class="img-rounded" width="200px">
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+     
+         
+          {%for imageindex in imgWelcome%}
+          <div class="container">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-4">
+                      <h4><img src="https://cdn.icon-icons.com/icons2/916/PNG/512/Menu_icon_icon-icons.com_71858.png" style="width:30px; height:30px"> </h4>
+                      <img src="{{imageindex.small1_banar.url}}" alt="..."style="height:15vh !important;width:15vh !important">
+                              
+                    </ul>
+                  </div>
+                 
+                  <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-lg-4">
+                          <div class="panel panel-default" style=" width: 250px;">
+                            <div class="panel-heading">
+                              <div class="row">
+                                <p>test</p>
+                                <img src="{{imageindex.small1_banar.url}}" alt="..."style="height:15vh !important;width:15vh !important">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="panel panel-default" style=" width: 250px;">
+                              <div class="panel-heading">
+                                <div class="row">
+                                  <p>test</p>
+                                  <img src="{{imageindex.small2_banar.url}}" alt="..."style="height:15vh !important;width:15vh !important">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-4">
+                            <div class="panel panel-default" style=" width: 230px;">
+                              <div class="panel-heading">
+                                <div class="row">
+                                  <p>test</p>
+                                  <img src="{{imageindex.small3_banar.url}}" alt="..."style="height:15vh !important;width:15vh !important">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                          <div class="panel panel-default" style=" width: 250px;">
+                            <div class="panel-heading">
+                              <div class="row">
+                                <p></p>
+                                <img src="{{imageindex.small1_banar.url}}" alt="..."style="height:15vh !important;width:15vh !important">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="panel panel-default" style=" width: 250px;">
+                              <div class="panel-heading">
+                                <div class="row">
+                                  <p>test</p>
+                                  <img src="{{imageindex.small2_banar.url}}" alt="..."style="height:15vh !important;width:15vh !important">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-4">
+                            <div class="panel panel-default" style=" width: 230px;">
+                              <div class="panel-heading">
+                                <div class="row">
+                                  <p>test</p>
+                                  <img src="{{imageindex.small3_banar.url}}" alt="..."style="height:15vh !important;width:15vh !important">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                      </div>
+                    </div>
+                
+                  </div>
+                </div>
+              </div>
+              {%endfor%}
+        
+  {%endblock%}
+</body>
+</html>
