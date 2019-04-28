@@ -3,10 +3,10 @@ from .forms import ProfileForm
 from .models import product,image,welcomeimages
 
 def index(request):
-   user= product.objects.all()
+   
    imgWelcome =welcomeimages.objects.all()
 
-   return render(request, 'index.html',{'user':user,'imgWelcome':imgWelcome})
+   return render(request, 'index.html',{'imgWelcome':imgWelcome})
 def search_results(request ):
 
     if 'article' in request.GET and request.GET["product"]:
@@ -59,3 +59,5 @@ def capenter(request):
    print(images_ofproduct)
 
    return render(request,"capentry.html",{'images_ofproduct':images_ofproduct})
+def product(request):
+   return render(request,"product.html")

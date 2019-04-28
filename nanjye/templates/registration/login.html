@@ -1,41 +1,56 @@
 {%extends "registration/base.html"%}
 {% load bootstrap3 %}
 {% block content %}
-<div class="container">
-  <div class="row">
-    <!-- Empty div -->
-    <div class="col-md-4">ffffffff</div>
-    <div class="col-md-4">
-      {% if form.errors %}
-        <p> Password or Username is incorrect </p>
-      {% endif %}
-      <div class="panel panel-default">
-
-        <div class="panel-heading">
-          <h3 class="text-center">Sign In</h3>
-        </div>
-        <div class="panel-body">
-
-          <form  action="/accounts/login/" method="post">
-            {% csrf_token %}
-            {% bootstrap_form form%}
-
-            <div class="form-group">
-              <input type="submit" class="btn btn-primary btn-sm" value="Login">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Staypay</title>
+  {% load staticfiles%}
+  <link rel="stylesheet" href="{% static 'css/images.css' %}">
+</head>
+<body>
+    
+    <div class="container" style="margin:50hv ;margin-top: 25%">
+       <div class="col-md-4"></div>
+        
+       
+          <div class="col-md-4" >
+            {% if form.errors %}
+              <p> Password or Username is incorrect </p>
+            {% endif %}
+            <div class="panel panel-default">
+      
+              <div class="panel-heading">
+                <h3 class="text-center">Sign In</h3>
+              </div>
+              <div class="panel-body">
+      
+                <form  action="/accounts/login/" method="post">
+                  {% csrf_token %}
+                  {% bootstrap_form form%}
+      
+                  <div class="form-group">
+                    <input type="submit" class="btn btn-primary btn-sm" value="Login">
+                   <p>if you don'have account click</p><a href="/accounts/regis/">her</a>
+                  </div>
+      
+                  <input type="hidden" name="next" value="{{next}}">
+      
+                </form>
+      
+              </div>
+      
             </div>
-
-            <input type="hidden" name="next" value="{{next}}">
-
-          </form>
-
+      
+          </div>
+          <!-- empty div -->
+         
         </div>
-
-      </div>
-
-    </div>
-    <!-- empty div -->
-    <div class="col-md-4"></div>
-  </div>
-</div>
+      
+</body>
+</html>
 
 {% endblock %}
