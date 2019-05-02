@@ -1,6 +1,8 @@
-from django.shortcuts import render
-from .forms import ProfileForm
+from django.shortcuts import render, redirect
+from .forms import ProfileForm, PaymentForm
 from .models import product,image,welcomeimages
+import requests
+import random
 
 def index(request):
    
@@ -38,20 +40,39 @@ def SaveProfile(request):
          workers.phone = MyProfileForm.cleaned_data["phone"]
          workers.NID_PASSPORT = MyProfileForm.cleaned_data["NID_PASSPORT"]
          workers.location = MyProfileForm.cleaned_data["location"]
-         workers.profile = MyProfileForm.cleaned_data["profile"]
-        
+         workers.profilProfileforme = MyProfileForm.cleaned_data["profile"]
+         # Profileform
          workers.save()
-         saved = True
+         saved = TrueProfileform
    else:
       MyProfileForm = Profileform()
 		
    return render(request, 'saved.html', locals())
-def article(request,article_id):
-    try:
-        article = Article.objects.get(id = article_id)
-    except DoesNotExist:
-        raise Http404()
-    return render(request,"all-news/article.html", {"article":article})
+def article(request,id):
+   articles = product.objects.get(pk = id)
+   data = {}
+   if request.method == "POST":
+      #Get the posted form
+      MyPaymentForm = PaymentForm(request.POST, request.FILES)
+      print(MyPaymentForm.is_valid())
+      if MyPaymentForm.is_valid():
+         # workers = workers()
+         data['amount'] = MyPaymentForm.cleaned_data["amount"]
+         data['phonenumber'] = MyPaymentForm.cleaned_data["phonenumber"]
+         data['clienttime'] = "1556616823718"
+         data['action'] = "liquidate"
+         data['action'] = "deposit"
+         data['appToken'] = "9563d7e60dc40e0315bc"
+         data['hash'] = random.randint(0,1000000)
+         # workers.save()
+         payload = data
+         print(payload)
+         url = "https://uplus.rw/bridge/"
+         requests.post(url, data=payload)
+         return redirect('welcome')
+   else:
+      MyPaymentForm = PaymentForm() 
+   return render(request,"all-news/article.html", {"articles":articles, "MyPaymentForm":MyPaymentForm})
 
 def capenter(request):
 
@@ -59,5 +80,27 @@ def capenter(request):
    print(images_ofproduct)
 
    return render(request,"capentry.html",{'images_ofproduct':images_ofproduct})
-def product(request):
+def productwe(request):
    return render(request,"product.html")
+
+def SavePayment(request):
+   saved = False
+   data = {}
+   if request.method == "POST":
+      #Get the posted form
+      MyPaymentForm = PaymentForm(request.POST, request.FILES)
+      print(MyPaymentForm.is_valid())
+      if MyPaymentForm.is_valid():
+         # workers = workers()
+         data['amount'] = MyPaymentForm.cleaned_data["amount"]
+         data['phonenumber'] = MyPaymentForm.cleaned_data["phonenumber"]
+         data['clienttime'] = MyPaymentForm.cleaned_data["clienttime"]
+         data['action'] = "deposit"
+         data['appToken'] = "9563d7e60dc40e0315bc"
+         data['hash'] = random.randstr(0,1000000)
+         # workers.save()
+         payload = data
+         print(payload)
+         url = "https://uplus.rw/bridge/"
+         requests.post(url, data=payload)
+         return redirect('welcome')
