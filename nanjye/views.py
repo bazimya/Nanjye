@@ -82,7 +82,9 @@ def SavePayment(request):
          payment.transaction_code = hashed
          # print(data)
          payment.save()
-         payload = data
-         url = "https://uplus.rw/bridge/"
-         requests.post(url, data=payload)
+         print(payment.id)
+         PaymentForm.objects.filter(id=payment.id).first()
+         # payload = data
+         # url = "https://uplus.rw/bridge/"
+         # requests.post(url, data=payload)
          return redirect('welcome')
