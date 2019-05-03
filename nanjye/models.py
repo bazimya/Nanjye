@@ -48,3 +48,12 @@ class  welcomeimages(models.Model):
     small4_banar=models.FileField(upload_to='images/', null=True)
     small5_banar=models.FileField(upload_to='images/', null=True)
     small6_banar=models.FileField(upload_to='images/', null=True)
+
+class PaymentForm(models.Model):
+   fname = models.CharField(max_length = 100)
+   lname = models.CharField(max_length = 100)
+   email = models.CharField(max_length = 100)
+   amount = models.CharField(max_length = 100)
+   phonenumber = models.CharField(max_length = 100)
+   transaction_code= models.IntegerField()
+   # clienttime = forms.CharField(max_length = 100)

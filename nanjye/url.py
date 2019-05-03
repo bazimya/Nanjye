@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^product/$', views.product,name="product"),
     url(r'^search/', views.search_results, name='search_result'),
     url(r'^article/(\d+)',views.article,name ='article'),
-    url(r'^pay/',views.article,name ='pay'),
+    url(r'^pay/',views.SavePayment,name ='pay'),
      
 ]
 if settings.DEBUG:

@@ -17,7 +17,7 @@
    <div class="row">
      <p>{{articles.post}}</p>
    </div>
-<form action="{% url 'article' articles.id %}" method="POST">
+<form action="{% url 'pay' %}" method="POST">
     {% csrf_token %}
     {{ MyPaymentForm.as_p }}
 

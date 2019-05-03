@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import ProfileForm, PaymentForm
-from .models import product,image,welcomeimages
+from .forms import ProfileForm, Payment
+from .models import product,image,welcomeimages,PaymentForm
 import requests
 import random
 
@@ -50,28 +50,7 @@ def SaveProfile(request):
    return render(request, 'saved.html', locals())
 def article(request,id):
    articles = product.objects.get(pk = id)
-   data = {}
-   if request.method == "POST":
-      #Get the posted form
-      MyPaymentForm = PaymentForm(request.POST, request.FILES)
-      print(MyPaymentForm.is_valid())
-      if MyPaymentForm.is_valid():
-         # workers = workers()
-         data['amount'] = MyPaymentForm.cleaned_data["amount"]
-         data['phonenumber'] = MyPaymentForm.cleaned_data["phonenumber"]
-         data['clienttime'] = "1556616823718"
-         data['action'] = "liquidate"
-         data['action'] = "deposit"
-         data['appToken'] = "9563d7e60dc40e0315bc"
-         data['hash'] = random.randint(0,1000000)
-         # workers.save()
-         payload = data
-         print(payload)
-         url = "https://uplus.rw/bridge/"
-         requests.post(url, data=payload)
-         return redirect('welcome')
-   else:
-      MyPaymentForm = PaymentForm() 
+   MyPaymentForm = Payment() 
    return render(request,"all-news/article.html", {"articles":articles, "MyPaymentForm":MyPaymentForm})
 
 def capenter(request):
@@ -86,21 +65,24 @@ def productwe(request):
 def SavePayment(request):
    saved = False
    data = {}
+   hashed = random.randint(0,1000000)
    if request.method == "POST":
       #Get the posted form
-      MyPaymentForm = PaymentForm(request.POST, request.FILES)
-      print(MyPaymentForm.is_valid())
+      MyPaymentForm = Payment(request.POST, request.FILES)
+      # print(MyPaymentForm.is_valid())
       if MyPaymentForm.is_valid():
          # workers = workers()
-         data['amount'] = MyPaymentForm.cleaned_data["amount"]
-         data['phonenumber'] = MyPaymentForm.cleaned_data["phonenumber"]
-         data['clienttime'] = MyPaymentForm.cleaned_data["clienttime"]
+         payment = MyPaymentForm.save(commit=False)
+         data['amount'] = payment.amount
+         data['phonenumber'] = payment.phonenumber
+         data['clienttime'] = '1556616823718'
          data['action'] = "deposit"
          data['appToken'] = "9563d7e60dc40e0315bc"
-         data['hash'] = random.randstr(0,1000000)
-         # workers.save()
+         data['hash'] = hashed
+         payment.transaction_code = hashed
+         # print(data)
+         payment.save()
          payload = data
-         print(payload)
          url = "https://uplus.rw/bridge/"
          requests.post(url, data=payload)
          return redirect('welcome')
