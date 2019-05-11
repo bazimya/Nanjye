@@ -10,6 +10,11 @@ urlpatterns = [
     url(r'^search/', views.search_results, name='search_result'),
     url(r'^article/(\d+)',views.article,name ='article'),
     url(r'^pay/',views.SavePayment,name ='pay'),
+    url(r'^firebase/',views.signin,name ='firebaselogin'),
+    url(r'^postsign/',views.postsign,name ='postsign'),
+    url(r'^logouts/',views.logout,name ='logout'),
+    url(r'^signup/',views.signup,name ='signup'),
+    url(r'^postsignup/',views.postsignup,name ='postsignup'),
      
 ]
 if settings.DEBUG:

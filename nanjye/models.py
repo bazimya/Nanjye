@@ -5,13 +5,15 @@ from django.contrib.auth.models import User
 class categories(models.Model):
     name=models.CharField(max_length=2500)
 
+   
+
 class productowner(models.Model):
     name=models.CharField(max_length=2500)
     phone=models.CharField(max_length=2500)
     emargencephonenumber=models.CharField(max_length=2500)
     profile = models.FileField(upload_to='images/')
 
-
+    
 class image(models.Model):
     profile_product1 = models.FileField(upload_to='images/',null=True)
     profile_product1 = models.FileField(upload_to='images/',null=True)
@@ -25,6 +27,8 @@ class product(models.Model):
     categoryfrk = models.ForeignKey(categories,null=True)
     imagefrk=models.ForeignKey(image,null=True)
     productownfrk=models.ForeignKey(productowner,null=True)
+
+  
 
 
 class  client(models.Model):

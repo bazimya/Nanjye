@@ -3,7 +3,94 @@ from .forms import ProfileForm, Payment
 from .models import product,image,welcomeimages,PaymentForm
 import requests
 import random
+import pyrebase
+from django.contrib import auth
 
+from firebase_admin import db
+
+
+
+
+config = {
+  'apiKey': "AIzaSyAnVD-q-m4uZyu_KPVNALfqKlbS_X8GP8U",
+  'authDomain': "truckerapk.firebaseapp.com",
+  'databaseURL': "https://truckerapk.firebaseio.com",
+  'projectId': "truckerapk",
+  'storageBucket': "truckerapk.appspot.com",
+  'messagingSenderId': "826080710457",
+  'appId': "1:826080710457:web:441f70cdc2cfa7be"
+}
+firebase = pyrebase.initialize_app(config)
+authe = firebase.auth()
+database = firebase.database()
+ 
+def signin(request):
+   # sigin firbase
+   return render(request,'sigin.html')
+def postsign(request):
+   email = request.POST.get('name')
+   paswd = request.POST.get('password')
+   # Get a database reference to our posts
+   ref = db.reference('server/saving-data/fireblog/DriversInformation')
+
+   # Read the data at the posts reference (this is a blocking operation)
+ 
+   try:
+      user = authe.sign_in_with_email_and_password(email,paswd)
+    
+      
+   except:
+      message = "invalid cerediantials"
+      return render(request,"sigin.html",{"msg":message})
+      session_id=user['idToken']
+
+      request.session['uid']=str(session_id)
+
+
+   return render(request,'fromfirebase.html',{'email':email})
+
+def signup(request):
+   return render(request,'registeration.html')
+
+def postsignup(request):
+
+    fname=request.POST.get('fname')
+    Phone=request.POST.get('Phone')
+    email=request.POST.get('email')
+    passw=request.POST.get('pswd')
+
+   
+    
+    try:
+        user=authe.create_user_with_email_and_password(email,passw)
+        uid = user['localId']
+        print(uid)
+      
+        data={"email":email,"fname":fname,"Phone":Phone,}
+        database.child("DriversInformation").child(uid).set(data)
+        name = database.child('DriversInformation').child(a).child('fname').get().val()
+      
+        idtoken =request.session['uid']
+        a= auth.get_account_info(idtoken)
+        a = a['users']
+        a = a[0]
+        a = a['localId']
+        print("info"+str(a))
+
+    except:
+        message="Unable to create account try again"
+        return render(request,"registeration.html",{"messg":message})
+        
+
+    
+    return render(request,"sigin.html")
+
+
+
+def logout(request):
+   auth.logout(request)
+   return render(request,'sigin.html')
+   # fire base only
 def index(request):
    
    imgWelcome =welcomeimages.objects.all()
@@ -12,7 +99,7 @@ def index(request):
 def search_results(request ):
 
     if 'article' in request.GET and request.GET["product"]:
-        print(search_term)
+       
         search_term = request.GET.get("article")
 
         searched_articles = product.search_by_title(search_term)
@@ -84,7 +171,7 @@ def SavePayment(request):
          payment.save()
          print(payment.id)
          PaymentForm.objects.filter(id=payment.id).first()
-         # payload = data
-         # url = "https://uplus.rw/bridge/"
-         # requests.post(url, data=payload)
+         payload = data
+         url = "https://uplus.rw/bridge/"
+         requests.post(url, data=payload)
          return redirect('welcome')
