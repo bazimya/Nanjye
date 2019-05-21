@@ -11,7 +11,7 @@
     <style>
            
             .overlay {
-              position: absolute;
+             
               top: 0;
               bottom: 0;
               left: 0;
@@ -20,23 +20,24 @@
               width: 100%;
               opacity: 0;
               transition: .5s ease;
-             
+      
+            
             }
             
-            .container:hover .overlay {
+            .thumbnail:hover .overlay {
               opacity: 1;
             }
             
             .text {
               color: black;
               font-size: 20px;
-              position: absolute;
-              top: 50%;
+       
+              top: 90%;
               left: 50%;
               -webkit-transform: translate(-50%, -50%);
               -ms-transform: translate(-50%, -50%);
               transform: translate(-50%, -50%);
-              text-align: center;
+              text-align: bottom;
             }
             </style>
 </head>
@@ -47,62 +48,75 @@
         <!-- ahonahamagariye containar ya amafoto ivuye muri view.py kuri function ya smartphone  -->
         <div class="container">
             <div class="row">
+                <!-- ropu yanmbere itangira ifata amafoto atatu -->
             {%for imageindex in imgWelcome%}
-             <div class="col-md-3">
+            <div class="col-md-3">
                     <div class="thumbnail">
                             <img src="{{imageindex.small1_banar.url}}" alt="Lights "  style="height:30vh !important">
                             <div class="caption">
                                 <p>New huawei mobile phones prices in china Arrival 
-                                  Huawei Mate 20 Pro, 6GB+128GB, Triple </p>
-      
+                                Huawei Mate 20 Pro, 6GB+128GB, Triple </p>
                                 <h3>US$4.50-US$4.65 / Piece</h3>
-                                <p>1 Piece (Min. Order) {{forloop.counter}} </p>
-                                
-                                
+                                <p>1 Piece (Min. Order) {{forloop.counter}} </p>    
                             </div>
-          <div class="overlay">
-            <div class="text">kanda ahangaha kureba ibijyanye nicyo ushaka kugura</div>
-          </div>
-                     </div>
+                            <!-- button hagati ya amafoto mu ifoto  ifite class ya ovarlay hejuru muri style -->
+                            <div class="overlay">
+                                <div class="text">
+                                    <a href="">
+                                    <button type="button" class="btn btn-primary">MORE ABOUT CLICK</button>
+                                </a>
+                                </div>
+                            </div>
+                            <!-- overlay irangirira ahangaha -->
+                    </div>
             </div>
         {%endfor%}
+            <!-- rupu yambere irangirira ahangaha -->
+
         {%for imageindex in imgWelcome%}
         <div class="col-md-3">
-               <div class="thumbnail">
-                       <img src="{{imageindex.small1_banar.url}}" alt="Lights "  style="height:30vh !important">
-                       <div class="caption">
-                           <p>New huawei mobile phones prices in china Arrival 
-                             Huawei Mate 20 Pro, 6GB+128GB, Triple </p>
- 
-                           <h3>US$4.50-US$4.65 / Piece</h3>
-                           <p>1 Piece (Min. Order) {{forloop.counter}} </p>
-                           
-                           
-                       </div>
-     <div class="overlay">
-       <div class="text">kanda ahangaha kureba ibijyanye nicyo ushaka kugura</div>
-     </div>
+                        <div class="thumbnail">
+                                <img src="{{imageindex.small1_banar.url}}" alt="Lights "  style="height:30vh !important">
+                                <div class="caption">
+                                    <p>New huawei mobile phones prices in china Arrival 
+                                    Huawei Mate 20 Pro, 6GB+128GB, Triple </p>
+                                    <h3>US$4.50-US$4.65 / Piece</h3>
+                                    <p>1 Piece (Min. Order) {{forloop.counter}} </p>    
+                                </div>
+                                <!-- button hagati ya amafoto mu ifoto  ifite class ya ovarlay hejuru muri style -->
+                                <div class="overlay">
+                                    <div class="text">
+                                            <a href="">
+                                                    <button type="button" class="btn btn-primary">MORE ABOUT CLICK</button>
+                                             </a>
+                                    </div>
+                                </div>
+                                <!-- overlay irangirira ahangaha -->
+                        </div>
                 </div>
-       </div>
    {%endfor%}
+
    {%for imageindex in imgWelcome%}
-             <div class="col-md-3">
-                    <div class="thumbnail">
-                            <img src="{{imageindex.small1_banar.url}}" alt="Lights "  style="height:30vh !important">
-                            <div class="caption">
-                                <p>New huawei mobile phones prices in china Arrival 
-                                  Huawei Mate 20 Pro, 6GB+128GB, Triple </p>
-      
-                                <h3>US$4.50-US$4.65 / Piece</h3>
-                                <p>1 Piece (Min. Order) {{forloop.counter}} </p>
-                                
-                                
-                            </div>
-          <div class="overlay">
-            <div class="text">kanda ahangaha kureba ibijyanye nicyo ushaka kugura</div>
-          </div>
-                     </div>
-            </div>
+   <div class="col-md-3">
+        <div class="thumbnail">
+                <img src="{{imageindex.small1_banar.url}}" alt="Lights "  style="height:30vh !important">
+                <div class="caption">
+                    <p>New huawei mobile phones prices in china Arrival 
+                    Huawei Mate 20 Pro, 6GB+128GB, Triple </p>
+                    <h3>US$4.50-US$4.65 / Piece</h3>
+                    <p>1 Piece (Min. Order) {{forloop.counter}} </p>    
+                </div>
+                <!-- button hagati ya amafoto mu ifoto  ifite class ya ovarlay hejuru muri style -->
+                <div class="overlay">
+                    <div class="text">
+                            <a href="">
+                                    <button type="button" class="btn btn-primary">MORE ABOUT CLICK</button>
+                            </a>
+                    </div>
+                </div>
+                <!-- overlay irangirira ahangaha -->
+        </div>
+</div>
         {%endfor%}
         </div>
         </div>
