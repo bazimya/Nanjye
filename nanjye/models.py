@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 
 class categories(models.Model):
     name=models.CharField(max_length=2500)
-
+    def __uncode__ (self):
+        return  self.name
    
 
 class productowner(models.Model):
@@ -13,12 +14,16 @@ class productowner(models.Model):
     emargencephonenumber=models.CharField(max_length=2500)
     profile = models.FileField(upload_to='images/')
 
+    def __uncode__ (self):
+        return  self.name
+
     
 class image(models.Model):
     profile_product1 = models.FileField(upload_to='images/',null=True)
     profile_product1 = models.FileField(upload_to='images/',null=True)
     profile_product2 = models.FileField(upload_to='images/',null=True)
     profile_product3 = models.FileField(upload_to='images/',null=True)
+    
 
 class product(models.Model):
     title=models.CharField(max_length=2500)
@@ -27,6 +32,8 @@ class product(models.Model):
     categoryfrk = models.ForeignKey(categories,null=True)
     imagefrk=models.ForeignKey(image,null=True)
     productownfrk=models.ForeignKey(productowner,null=True)
+    def __uncode__ (self):
+        return  self.title
 
   
 
@@ -61,3 +68,9 @@ class PaymentForm(models.Model):
    phonenumber = models.CharField(max_length = 100)
    transaction_code= models.IntegerField()
    # clienttime = forms.CharField(max_length = 100)
+class Person(models.Model):
+    SHIRT_SIZES = (
+        ('S', 'Small'),
+        ('M', 'Medium'),
+        ('L', 'Large'),
+    )

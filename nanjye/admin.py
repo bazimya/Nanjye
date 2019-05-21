@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import categories,product,image,productowner,buyer,client,welcomeimages
+from .models import categories,product,image,productowner,buyer,client,welcomeimages,Person
 
 
 admin.site.register(categories)
@@ -9,5 +9,8 @@ admin.site.register(productowner)
 admin.site.register(buyer)
 admin.site.register(client)
 admin.site.register(welcomeimages)
+admin.site.register(Person)
+admin.site.site_header ='Studaypay'
+
 
 

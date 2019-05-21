@@ -1,0 +1,114 @@
+{%extends "all-news/base.html"%}
+{% load bootstrap3 %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>smartphone </title>
+    <style>
+           
+            .overlay {
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              height: 100%;
+              width: 100%;
+              opacity: 0;
+              transition: .5s ease;
+             
+            }
+            
+            .container:hover .overlay {
+              opacity: 1;
+            }
+            
+            .text {
+              color: black;
+              font-size: 20px;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              -webkit-transform: translate(-50%, -50%);
+              -ms-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+              text-align: center;
+            }
+            </style>
+</head>
+<body >
+        
+        
+       
+        <!-- ahonahamagariye containar ya amafoto ivuye muri view.py kuri function ya smartphone  -->
+        <div class="container">
+            <div class="row">
+            {%for imageindex in imgWelcome%}
+             <div class="col-md-3">
+                    <div class="thumbnail">
+                            <img src="{{imageindex.small1_banar.url}}" alt="Lights "  style="height:30vh !important">
+                            <div class="caption">
+                                <p>New huawei mobile phones prices in china Arrival 
+                                  Huawei Mate 20 Pro, 6GB+128GB, Triple </p>
+      
+                                <h3>US$4.50-US$4.65 / Piece</h3>
+                                <p>1 Piece (Min. Order) {{forloop.counter}} </p>
+                                
+                                
+                            </div>
+          <div class="overlay">
+            <div class="text">kanda ahangaha kureba ibijyanye nicyo ushaka kugura</div>
+          </div>
+                     </div>
+            </div>
+        {%endfor%}
+        {%for imageindex in imgWelcome%}
+        <div class="col-md-3">
+               <div class="thumbnail">
+                       <img src="{{imageindex.small1_banar.url}}" alt="Lights "  style="height:30vh !important">
+                       <div class="caption">
+                           <p>New huawei mobile phones prices in china Arrival 
+                             Huawei Mate 20 Pro, 6GB+128GB, Triple </p>
+ 
+                           <h3>US$4.50-US$4.65 / Piece</h3>
+                           <p>1 Piece (Min. Order) {{forloop.counter}} </p>
+                           
+                           
+                       </div>
+     <div class="overlay">
+       <div class="text">kanda ahangaha kureba ibijyanye nicyo ushaka kugura</div>
+     </div>
+                </div>
+       </div>
+   {%endfor%}
+   {%for imageindex in imgWelcome%}
+             <div class="col-md-3">
+                    <div class="thumbnail">
+                            <img src="{{imageindex.small1_banar.url}}" alt="Lights "  style="height:30vh !important">
+                            <div class="caption">
+                                <p>New huawei mobile phones prices in china Arrival 
+                                  Huawei Mate 20 Pro, 6GB+128GB, Triple </p>
+      
+                                <h3>US$4.50-US$4.65 / Piece</h3>
+                                <p>1 Piece (Min. Order) {{forloop.counter}} </p>
+                                
+                                
+                            </div>
+          <div class="overlay">
+            <div class="text">kanda ahangaha kureba ibijyanye nicyo ushaka kugura</div>
+          </div>
+                     </div>
+            </div>
+        {%endfor%}
+        </div>
+        </div>
+    <!-- guhamagara amafoto aho birangirira -->
+       
+    </body>
+</html>
+  
+{%endblock%}
