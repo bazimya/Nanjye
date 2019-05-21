@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^$', views.index,name="welcome"),
     url(r'^smartphone/',views.smartphone,name="smartphone"),
-    url(r'^details/(?P<userid>\d+)/$',views.contact,name="contact"),
+    url(r'^article/(\d+)',views.article,name ='article'),
     url(r'^contact/',views.contact,name="contact"),
      
 ]

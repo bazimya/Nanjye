@@ -1,0 +1,31 @@
+{%extends 'all-news/base.html'%}
+
+ {% block content %}
+
+
+
+ 
+ <div class="container">
+
+   <div class="row">
+        <div class="thumbnail">
+                <img src="{{article.small1_banar.url}}" alt="Lights "  style="height:30vh !important">
+        </div>
+
+   </div>
+
+   <div class="row">
+     <h1 class="text-center">{{article.title}}</h1>
+   </div>
+
+   <div class="row">
+     <p>{{article.post}}</p>
+   </div>
+
+   <div class="row">
+     <p>Posted {{article.pub_date|timesince}} by {{article.editor.first_name}}</p>
+   </div>
+
+ </div>
+
+ {% endblock %}
